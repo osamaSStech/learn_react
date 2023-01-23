@@ -1,12 +1,14 @@
 // import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import NavbarC from './Components/NavbarC.js';
+import Navbar from './Components/Navbar.js';
 import Login from './Components/login.js';
 import './App.css';
 
 function App() {
   return (
     <>
-      <NavbarC />
+      {/* <Navbar /> */}
+      {/* <Navbar title="Dynamic Title" aboutText="About" /> */}
+      <Navbar title="Dynamic Title" />
       <Login />
     </>
   );
