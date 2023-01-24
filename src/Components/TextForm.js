@@ -18,7 +18,7 @@ export default function TextForm(props) {
     }
     let textArr = (text.split(" "))
     let textStart = (textArr[0]);
-    let textEnd = (textArr.pop());
+    // let textEnd = (textArr.pop());
     return (
         <>
             <div className="container my-3">
