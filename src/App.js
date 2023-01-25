@@ -5,9 +5,11 @@ import TextForm from './Components/TextForm.js';
 import './App.css';
 // import AboutUs from './Components/AboutUs.js';
 import React, { useState } from 'react'
+import Alert from './Components/Alert.js';
 
 function App() {
   const [mode, setMode] = useState("light");
+  const [alert, setAlert] = useState(null)
 
   const toggleMode = () => {
     if (mode === 'light') {
@@ -18,12 +20,24 @@ function App() {
       document.body.style.backgroundColor = "white"
     }
   }
+
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert("");
+    }, 2000);
+  }
+
   return (
     <>
       {/* <Navbar /> */}
       {/* <Navbar title="Dynamic Title" aboutText="About" /> */}
       <Navbar title="Dynamic Title" mode={mode} toggleMode={toggleMode} />
-      <TextForm heading="Enter the text to analyze" mode={mode} />
+      <Alert alert={alert} />
+      <TextForm heading="Enter the text to analyze" mode={mode} showAlert={showAlert} />
       {/* <AboutUs /> */}
       {/* <Login /> */}
     </>
