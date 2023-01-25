@@ -16,29 +16,48 @@ export default function TextForm(props) {
         let newText = text.toLowerCase();
         setText(newText);
     }
+    const handleClear = () => {
+        setText('');
+    }
+    const handleCopy = () => {
+        navigator.clipboard.writeText(text);
+    }
+    const handleExtraSpaces = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(' '));
+    }
     let textArr = (text.split(" "))
     let textStart = (textArr[0]);
     // let textEnd = (textArr.pop());
     return (
         <>
-            <div className="container my-3">
+            <div className="main-wrapper-div" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
                 <div className="container my-3">
-                    <form>
-                        <h1>{props.heading}</h1>
-                        <div className="form-group">
-                            <textarea className="form-control" id="myText" rows="6" value={text} onChange={handleOnChange}></textarea>
-                            {/* <textarea className="form-control" id="myText" rows="8" placeholder={text}></textarea> */}
+                    <div className="container my-3">
+                        <form>
+                            <h1>{props.heading}</h1>
+                            <div className="form-group">
+                                <textarea className="form-control" id="myText" rows="6" value={text} onChange={handleOnChange} style={{ color: props.mode === 'light' ? 'black' : 'white', backgroundColor: props.mode === 'light' ? 'white' : 'black' }}></textarea>
+                                {/* <textarea className="form-control" id="myText" rows="8" placeholder={text}></textarea> */}
+                            </div>
+                        </form>
+                        <div className="my-3">
+                            <button className="btn btn-primary" onClick={handleUpClick}>Convert to Uppercase</button>
+                            <button className="btn btn-primary ms-3" onClick={handleLoClick}>Convert to Lowercase</button>
+                            <button className="btn btn-primary ms-3" onClick={handleCopy}>Copy Text</button>
+                            <button className="btn btn-primary ms-3" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+                            <button className="btn btn-primary ms-3" onClick={handleClear}>Clear Text</button>
                         </div>
-                    </form>
-                    <button className="btn btn-primary" onClick={handleUpClick}>Convert to Uppercase</button>
-                    <button className="btn btn-primary float-right" onClick={handleLoClick}>Convert to Lowercase</button>
-                </div>
-                <div className="container my-3">
-                    <h2>Your text summary</h2>
-                    <p>{((textStart === '') ? text.split(" ").length - 1 : text.split(" ").length)} words and {text.length} characters.</p>
-                    <p>{((textStart === '') ? 0 : 0.008 * text.split(" ").length)} minutes read.</p>
-                    <h2>Preview</h2>
-                    <p>{text}</p>
+                    </div>
+                    <div className="container my-3">
+                        <h2>Your text summary</h2>
+                        <p>{((textStart === '') ? text.split(" ").length - 1 : text.split(" ").length)} words and {text.length} characters.</p>
+                        <p>{((textStart === '') ? 0 : 0.008 * text.split(" ").length)} minutes read.</p>
+                        <h2>Preview</h2>
+                        <div className="col-md-12">
+                            <p>{text}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
