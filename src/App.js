@@ -1,9 +1,9 @@
-// import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar.js';
 import TextForm from './Components/TextForm.js';
 // import Login from './Components/login.js';
 import './App.css';
-// import AboutUs from './Components/AboutUs.js';
+import AboutUs from './Components/AboutUs.js';
 import React, { useState } from 'react'
 import Alert from './Components/Alert.js';
 
@@ -33,13 +33,23 @@ function App() {
 
   return (
     <>
-      {/* <Navbar /> */}
-      {/* <Navbar title="Dynamic Title" aboutText="About" /> */}
-      <Navbar title="Dynamic Title" mode={mode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
-      <TextForm heading="Enter the text to analyze" mode={mode} showAlert={showAlert} />
-      {/* <AboutUs /> */}
-      {/* <Login /> */}
+      <Router>
+        {/* <Navbar /> */}
+        {/* <Navbar title="Dynamic Title" aboutText="About" /> */}
+        <Navbar title="Dynamic Title" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Routes>
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/" element={<TextForm heading="Enter the text to analyze" mode={mode} showAlert={showAlert} />} />
+          {/* <Route path='/about'>
+            <AboutUs />
+          </Route>
+          <Route path='/'>
+            <TextForm heading="Enter the text to analyze" mode={mode} showAlert={showAlert} />
+          </Route> */}
+        </Routes>
+        {/* <Login /> */}
+      </Router>
     </>
   );
 }
